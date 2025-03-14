@@ -40,8 +40,8 @@ lag(salary) over(partition by employee_id order by HIRE_DATE) as prev_salary
 from hr.employees;
 
 -- 13. Identify employees whose salaries increased over time.
-SELECT employee_id, hire_date, salary, 
-       LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) AS prev_salary,
-       CASE WHEN salary > LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) 
-            THEN 'Increased' ELSE 'Decreased' END AS salary_trend
-FROM HR.employees;
+select employee_id, hire_date, salary, 
+LAG(salary) OVER (PARTITION by employee_id ORDER BY hire_date) AS prev_salary,
+case when salary > LAG(salary) OVER (PARTITION BY employee_id ORDER BY hire_date) 
+then 'Increased' ELSE 'Decreased' END AS salary_trend
+from HR.employees;
